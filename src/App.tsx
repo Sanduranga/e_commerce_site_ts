@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import NavBar from "./components/NavBar";
+import HomeItems from "./components/pages/HomeItems";
+import Pagenation from "./components/Pagenation";
+import { useAppSelector } from "./redux/store";
+import Cart from "./components/pages/Cart";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
+  const darkMode = useAppSelector((state) => state.theme.dark);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`${darkMode ? "bg-slate-700 text-white" : "bg-gray-300"}`}>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<HomeItems />} />
+      </Routes>
+      <Routes>
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
     </div>
   );
 }
