@@ -17,7 +17,7 @@ export default function NavBar() {
     <div className="bg-green-800 py-3">
       <div className="flex justify-around items-center font-bold text-xl">
         <div>
-          <Link to={"/"}>
+          <Link to={"/e_commerce_site_ts"}>
             <h1>E_Cmz_Redux_Ts.lk</h1>
           </Link>
         </div>
