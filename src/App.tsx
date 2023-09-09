@@ -13,7 +13,7 @@ function App() {
     <div className={`${darkMode ? "bg-slate-700 text-white" : "bg-gray-300"}`}>
       <NavBar />
       <Routes>
-        <Route path="/" element={<HomeItems />} />
+        <Route path="/e_commerce_site_ts" element={<HomeItems />} />
       </Routes>
       <Routes>
         <Route path="/cart" element={<Cart />} />
