@@ -1,12 +1,16 @@
-import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import { BsMenuButtonFill } from "react-icons/bs";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { toggleMode } from "../redux/features/theme/Theme.";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { showCartMenu } from "../redux/features/CartSlice";
 
 export default function NavBar() {
   const darkMode = useAppSelector((state) => state.theme.dark);
-  const numberOfCartItems = useAppSelector(state => state.buyGoods.numberOfItems)
+  const numberOfCartItems = useAppSelector(
+    (state) => state.buyGoods.numberOfItems
+  );
   const dispatch = useAppDispatch();
 
   const handleDarkMode = () => {
@@ -14,13 +18,21 @@ export default function NavBar() {
   };
 
   return (
-    <div className="bg-green-800 py-3">
-      <div className="flex justify-around items-center font-bold text-xl">
+    <div className="bg-gradient-to-b from-slate-500 to-slate-900/70 py-3">
+      <div className="flex justify-around items-center font-bold mb-4 text-xl">
+        <div
+          className="cursor-pointer"
+          onClick={() => dispatch(showCartMenu())}
+        >
+          <BsMenuButtonFill />
+        </div>
+
         <div>
           <Link to={"/e_commerce_site_ts"}>
             <h1>E_Cmz_Redux_Ts.lk</h1>
           </Link>
         </div>
+
         <div
           className={`rounded-full w-14  h-6 cursor-pointer ${
             darkMode ? "bg-slate-700" : "bg-gray-300"
@@ -40,7 +52,7 @@ export default function NavBar() {
           </span>
         </div>
 
-        <div className=" rounded-full bg-slate-100 p-2 flex justify-center items-center">
+        <div className=" rounded-full z-40 bg-gray-800 opacity-80 p-2 fixed right-5 md:top-5 top-10 hover:opacity-100 ">
           <Link to={"/cart"}>
             <div className="relative">
               <div className="t-0 absolute left-3">
@@ -48,7 +60,7 @@ export default function NavBar() {
                   {numberOfCartItems}
                 </p>
               </div>
-              <FaShoppingCart size="30px" color="blue" />
+              <FaShoppingCart size="40px" color="blue" />
             </div>
           </Link>
         </div>

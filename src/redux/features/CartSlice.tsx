@@ -1,30 +1,39 @@
-
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
-    name: 'cart',
-    initialState: {
-        buyItems: [],
-        numberOfItems: 0,
-        totalPrice: 0
+  name: "cart",
+  initialState: {
+    boughtItems: [],
+    numberOfItems: 0,
+    totalPrice: 0,
+    cartMenu: false,
+  },
+  reducers: {
+    boughtItems: (state, action) => {
+      state.boughtItems = action.payload;
     },
-    reducers: {
-        buyItems: (state, action) => {
-            state.buyItems = action.payload
-        },
 
-        itemCountPlus: (state) => {
-            state.numberOfItems++
-        },
+    itemCountPlus: (state) => {
+      state.numberOfItems++;
+    },
 
-        itemCountMinus: (state) => {
-            state.numberOfItems--
-        },
-        cartPrice: (state, action) => {
-            state.totalPrice = action.payload
-        }
-    }
-})
+    itemCountMinus: (state) => {
+      state.numberOfItems--;
+    },
+    cartPrice: (state, action) => {
+      state.totalPrice = action.payload;
+    },
+    showCartMenu: (state) => {
+      state.cartMenu = !state.cartMenu;
+    },
+  },
+});
 
-export const { buyItems, itemCountPlus, itemCountMinus, cartPrice } = cartSlice.actions
-export const cartReducer = cartSlice.reducer
+export const {
+  boughtItems,
+  itemCountPlus,
+  itemCountMinus,
+  cartPrice,
+  showCartMenu,
+} = cartSlice.actions;
+export const cartReducer = cartSlice.reducer;
