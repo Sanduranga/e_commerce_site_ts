@@ -1,9 +1,10 @@
+import { useDispatch, useSelector } from "react-redux";
 import { pageNext, pagePrev } from "../redux/features/HomeItemSlice";
-import { useAppSelector, useAppDispatch } from "../redux/store";
+import { RootState } from "../redux/store";
 
 export default function Pagenation() {
-  const pageNo = useAppSelector((state) => state.items.pageNo);
-  const dispatch = useAppDispatch();
+  const pageNo = useSelector((state: RootState) => state.items.pageNo);
+  const dispatch = useDispatch();
 
   const handlePrev = () => {
     if (pageNo > 1) dispatch(pagePrev());

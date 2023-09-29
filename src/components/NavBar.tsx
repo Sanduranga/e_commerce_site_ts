@@ -1,24 +1,24 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { BsMenuButtonFill } from "react-icons/bs";
-import { useAppDispatch, useAppSelector } from "../redux/store";
+import { RootState } from "../redux/store";
 import { toggleMode } from "../redux/features/theme/Theme.";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { showCartMenu } from "../redux/features/CartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function NavBar() {
-  const darkMode = useAppSelector((state) => state.theme.dark);
-  const numberOfCartItems = useAppSelector(
-    (state) => state.buyGoods.numberOfItems
+  const darkMode = useSelector((state: RootState) => state.theme.dark);
+  const numberOfCartItems = useSelector(
+    (state: RootState) => state.cart.numberOfItems
   );
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   const handleDarkMode = () => {
     dispatch(toggleMode());
   };
 
   return (
-    <div className="bg-gradient-to-b from-slate-500 to-slate-900/70 py-3">
+    <div className="w-[100vw] z-40 bg-gradient-to-b from-slate-500 to-slate-900/70 py-3">
       <div className="flex justify-around items-center font-bold mb-4 text-xl">
         <div
           className="cursor-pointer"
@@ -28,7 +28,7 @@ export default function NavBar() {
         </div>
 
         <div>
-          <Link to={"/e_commerce_site_ts"}>
+          <Link to="/e_commerce_site_ts">
             <h1>E_Cmz_Redux_Ts.lk</h1>
           </Link>
         </div>
@@ -53,16 +53,14 @@ export default function NavBar() {
         </div>
 
         <div className=" rounded-full z-40 bg-gray-800 opacity-80 p-2 fixed right-5 md:top-5 top-10 hover:opacity-100 ">
-          <Link to={"/cart"}>
-            <div className="relative">
-              <div className="t-0 absolute left-3">
-                <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-2 text-xs text-white">
-                  {numberOfCartItems}
-                </p>
-              </div>
-              <FaShoppingCart size="40px" color="blue" />
+          <div onClick={() => dispatch(showCartMenu())} className="relative">
+            <div className="t-0 absolute left-3">
+              <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-2 text-xs text-white">
+                {numberOfCartItems}
+              </p>
             </div>
-          </Link>
+            <FaShoppingCart size="40px" color="blue" />
+          </div>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 {
+  "homepage": "https://sanduranga.github.io/e_commerce_site_ts/",
   "name": "e_cmz_toolkit_ts",
   "version": "0.1.0",
   "private": true,
@@ -13,6 +14,7 @@
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
     "axios": "^1.4.0",
+    "framer-motion": "^10.16.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
@@ -25,6 +27,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -48,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^6.0.0",
     "tailwindcss": "^3.3.3"
   }
 }
