@@ -24,7 +24,7 @@ function CartPopup() {
         className="text-white mt-2 flex justify-center md:text-xl items-center"
       >
         <img
-          className="rounded-md mr-3 md:w-[8vw] md:h-[8vh] w-[8vw] h-[4vh]"
+          className="rounded-md mr-3 md:w-16 md:h-8 w-12 h-6"
           src={boughtItems.url}
           alt="images"
         />
@@ -35,7 +35,7 @@ function CartPopup() {
 
   return (
     <motion.div
-      className="fixed h-[55vh] w-[70vw] shadow-xl shadow-black left-1/2 -translate-x-1/2 bg-green-600"
+      className="fixed h-[55vh] w-[70vw] rounded-md shadow-xl shadow-black left-1/2 -translate-x-1/2 bg-slate-600"
       initial={{
         top: "100%",
       }}
@@ -56,24 +56,24 @@ function CartPopup() {
           your cart
         </div> */}
         <div className="font-mono grid grid-cols-1 md:absolute sm:w-auto w-[40vw] left-5 md:top-1/2 md:-translate-y-1/2 text-sm sm:text-md text-white">
-          <button className="sm:p-2 p-1 sm:mt-2 m-1 rounded-md bg-gray-700">
+          <button className="sm:p-2 p-1 sm:mt-2 m-1 rounded-md shadow-md bg-green-700">
             <Link to="/cart">View Cart</Link>
           </button>
           <button
             onClick={() => dispatch(showCartMenu())}
-            className="sm:p-2 p-1 sm:mt-2 m-1 rounded-sm bg-gray-700"
+            className="sm:p-2 p-1 sm:mt-2 m-1 rounded-md shadow-md bg-green-700"
           >
             Continue Shopping
           </button>
-          <button className="sm:p-2 p-1 sm:mt-2 m-1 rounded-sm bg-gray-700">
+          <button className="sm:p-2 p-1 sm:mt-2 m-1 rounded-md shadow-md bg-green-700">
             Checkout
           </button>
         </div>
         <div className="sm:w-[25vw] sm:h-[35vh] sm:justify-self-start w-[50vw] h-[20vh] overflow-y-scroll md:left-1/2 md:-translate-x-1/2 md:top-1/2 md:-translate-y-1/2 md:absolute border border-black p-2">
           {cartPopupItems()}
         </div>
-        <div className="font-mono sm:justify-self-end font-bold md:absolute sm:right-10 md:top-1/2 md:-translate-y-1/2 sm:text-3xl text-xl text-white">
-          <h1>Subtotal:</h1>
+        <div className="font-mono sm:justify-self-end font-bold md:absolute sm:right-10 md:top-1/2 md:-translate-y-1/2 sm:text-2xl text-lg text-white">
+          <h1>Subtotal</h1>
           <h1>Rs. {cartPrice}</h1>
         </div>
       </div>

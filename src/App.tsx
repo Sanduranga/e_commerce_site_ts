@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div
-      className={`flex font-mono ${
+      className={`flex font-mono overflow-x-hidden ${
         darkMode ? "bg-slate-700 text-white" : "bg-gray-300"
       }`}
     >

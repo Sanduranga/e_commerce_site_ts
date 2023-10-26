@@ -6,7 +6,6 @@ import {
   itemCountMinus,
 } from "../../redux/features/CartSlice";
 import { RootState } from "../../redux/store";
-import NavBar from "../NavBar";
 
 const Cart = () => {
   const buyGoods = useSelector((state: RootState) => state.cart.cartItems);
@@ -21,6 +20,7 @@ const Cart = () => {
     price: number;
     id: string;
     url: string;
+    details: string;
   }
   const handleDeleteBoughtItems = (indexToDelete: number, price: number) => {
     dispatch(itemCountMinus());
@@ -36,16 +36,17 @@ const Cart = () => {
     return buyGoods.map((boughtItems: itemTypes, index) => (
       <div
         key={boughtItems.id}
-        className="text-white mt-2 flex justify-center md:text-xl items-center"
+        className="text-black mt-2 flex justify-center md:text-xl border-b-4 py-1 items-center"
       >
+        <p>{boughtItems.details}</p>
         <img
-          className="rounded-md mr-3 md:w-1/12 md:h-1/6 w-10 h-8"
+          className="rounded-md mx-3 md:w-1/12 md:h-1/6 w-10 h-8"
           src={boughtItems.url}
           alt="images"
         />
-        <div> {boughtItems.price} </div>
+        <div className="text-black"> {boughtItems.price} </div>
         <h1
-          className="md:ml-5 ml-2"
+          className="md:ml-5 ml-2 bg-red-600 text-white"
           onClick={() => handleDeleteBoughtItems(index, boughtItems.price)}
         >
           <RiDeleteBack2Fill />
@@ -56,11 +57,12 @@ const Cart = () => {
 
   return (
     <div className="w-full">
-      <NavBar />
-      <div className="md:w-[80vw] w-[90vw] mx-auto rounded-lg md:p-10 p-5 overflow-hidden bg-gradient-to-br from-blue-500 to-gray-950 mt-10 flex md:justify-evenly min-h-[80vh] justify-between">
-        <div className=" w-3/6">{buyItems()}</div>
-        <div className="flex items-center">
-          <h3 className="font-bold md:text-xl text-md text-center text-white">
+      <div className="lg:w-[80vw] w-[90vw] mx-auto rounded-lg lg:p-10 p-5 overflow-hidden bg-white mt-5 lg:flex md:justify-evenly min-h-[80vh]">
+        <div className=" lg:w-3/6 w-full border-4 lg:p-5 p-2 h-[60vh] overflow-y-scroll lg-mb-0 mb-5">
+          {buyItems()}
+        </div>
+        <div className="flex items-center bg-gray-400 shadow-lg rounded-md h-20 w-auto p-5">
+          <h3 className="font-bold md:text-xl text-md text-center text-black">
             Total Price: Rs.{totalCartPrice}
           </h3>
         </div>

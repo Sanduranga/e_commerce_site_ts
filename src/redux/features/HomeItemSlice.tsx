@@ -5,21 +5,34 @@ export const fetchData = createAsyncThunk(
   "gallery/fetchImages",
   async (pageNo: number = 1) => {
     const result = await axios.get(
-      `https://picsum.photos/v2/list?limit=12&page=${pageNo}`
+      `https://picsum.photos/v2/list?limit=15&page=${pageNo}`
     );
     return result.data;
   }
 );
 
+interface iniState {
+  loading: boolean;
+  items: [];
+  error: string | undefined;
+  pageNo: number;
+  // reference: React.MutableRefObject<HTMLDivElement | null> | null;
+  ref: boolean;
+}
+
+const initialState: iniState = {
+  loading: true,
+  items: [],
+  error: "err",
+  pageNo: 1,
+  // reference: null,
+  ref: false,
+};
+
 const homeItemSlice = createSlice({
   name: "homeItem",
 
-  initialState: {
-    loading: true,
-    items: [],
-    error: undefined as string | undefined,
-    pageNo: 1,
-  },
+  initialState,
   reducers: {
     pageNext: (state) => {
       state.pageNo++;
@@ -27,6 +40,10 @@ const homeItemSlice = createSlice({
 
     pagePrev: (state) => {
       state.pageNo--;
+    },
+
+    refTest: (state) => {
+      state.ref = !state.ref;
     },
   },
   extraReducers: (builder) => {
@@ -47,4 +64,4 @@ const homeItemSlice = createSlice({
 });
 
 export const homeItemsReducer = homeItemSlice.reducer;
-export const { pagePrev, pageNext } = homeItemSlice.actions;
+export const { pagePrev, pageNext, refTest } = homeItemSlice.actions;

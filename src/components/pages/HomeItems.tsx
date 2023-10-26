@@ -10,7 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import CartPopup from "./CartPopup";
-import NavBar from "../NavBar";
+import Slider from "../Slider";
 
 const HomeItems = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const HomeItems = () => {
   );
   // const showCart = useSelector((state: RootState) => state.cart.cartMenu);
 
-  const [buyHomeItems, setBuyHomeItems] = useState<itemstype[]>([]);
+  const [buyHomeItems, setBuyHomeItems] = useState<buyItemstype[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
   useEffect(() => {
@@ -36,15 +36,21 @@ const HomeItems = () => {
     dispatch(cartPrice(totalPrice));
   }, [dispatch, buyHomeItems, totalPrice]);
 
-  interface itemstype {
+  interface buyItemstype {
     price: number;
     id: string;
     url: string;
+    details: string;
   }
 
-  const buyHomeItem = (price: number, id: string, url: string) => {
+  const buyHomeItem = (
+    price: number,
+    id: string,
+    url: string,
+    details: string
+  ) => {
     setTotalPrice((prevState) => prevState + price);
-    setBuyHomeItems([...buyHomeItems, { price, id, url }]);
+    setBuyHomeItems([...buyHomeItems, { price, id, url, details }]);
     dispatch(itemCountPlus());
     dispatch(showCartMenu());
   };
@@ -62,7 +68,7 @@ const HomeItems = () => {
     items.map((item: itemTypes) => (
       <div
         key={item.id}
-        className="flex font-bold flex-col rounded-lg bg-gradient-to-b mt-3 from-yellow-300/20 to-yellow-600/50 overflow-hidden font-mono p-4 shadow-lg"
+        className="flex flex-col rounded-lg bg-gradient-to-b mt-3 from-gray-300/20 to-gray-600/50 overflow-hidden font-mono p-4 shadow-lg"
       >
         <img
           src={item.download_url}
@@ -70,15 +76,20 @@ const HomeItems = () => {
           className="md:h-[30vh] h-[20vh] w-full object-cover"
         />
         <div>
-          <span>Rs.{item.width}</span>
+          <p>{item.author}</p>
+          <span className="font-bold">
+            LKR.<span className="text-xl font-bold">{item.width}</span>
+          </span>
         </div>
         <div>
-          <span>Discount Rs.{item.height}</span>
+          <span>+Shipping: LKR.{item.height}</span>
         </div>
         <div>
           <button
-            onClick={() => buyHomeItem(item.width, item.id, item.download_url)}
-            className="text-center font-bold text-white bg-green-900 rounded-lg p-1 md:w-1/3 w-[25vw]"
+            onClick={() =>
+              buyHomeItem(item.width, item.id, item.download_url, item.author)
+            }
+            className="text-center font-bold text-white bg-green-900 rounded-lg p-1 w-auto"
           >
             Buy Item
           </button>
@@ -88,8 +99,8 @@ const HomeItems = () => {
 
   return (
     <div className="flex justify-center flex-col items-center md:grid-cols-1 relative sm:gap-20 gap-7">
-      <NavBar />
-      <div className="grid gap-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 px-3 md:px-5 ">
+      <Slider />
+      <div className="grid gap-1 grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 px-3 md:px-5 ">
         {homeItemMap()}
         <Pagenation />
       </div>

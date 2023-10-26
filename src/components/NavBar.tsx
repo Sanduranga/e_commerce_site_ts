@@ -11,6 +11,7 @@ export default function NavBar() {
   const numberOfCartItems = useSelector(
     (state: RootState) => state.cart.numberOfItems
   );
+
   const dispatch = useDispatch();
 
   const handleDarkMode = () => {
@@ -18,7 +19,7 @@ export default function NavBar() {
   };
 
   return (
-    <div className="w-[100vw] z-40 bg-gradient-to-b from-slate-500 to-slate-900/70 py-3">
+    <div className="w-full z-40 bg-gradient-to-b from-slate-500 to-slate-900/70 py-2 m-0 lg:h-auto h-[15vh]">
       <div className="flex justify-around items-center font-bold mb-4 text-xl">
         <div
           className="cursor-pointer"
@@ -29,18 +30,20 @@ export default function NavBar() {
 
         <div>
           <Link to="/e_commerce_site_ts">
-            <h1>E_Cmz_Redux_Ts.lk</h1>
+            <h1 className="text-slate-300 bg-red-400 p-2 rounded-md">
+              E_Commerce <br /> Toolkit Site
+            </h1>
           </Link>
         </div>
 
         <div
-          className={`rounded-full w-14  h-6 cursor-pointer ${
+          className={`rounded-full w-16 shadow-black shadow-md flex items-center h-7 p-1 cursor-pointer ${
             darkMode ? "bg-slate-700" : "bg-gray-300"
           } transition-colors duration-300`}
           onClick={handleDarkMode}
         >
           <span
-            className={`relative rounded-full text-fuchsia-950 ${
+            className={`relative rounded-full text-fuchsia-950 shadow-sm shadow-black ${
               darkMode
                 ? "transform translate-x-8 duration-500"
                 : "transform translate-x-0 duration-500"
@@ -52,14 +55,17 @@ export default function NavBar() {
           </span>
         </div>
 
-        <div className=" rounded-full z-40 bg-gray-800 opacity-80 p-2 fixed right-5 md:top-5 top-10 hover:opacity-100 ">
-          <div onClick={() => dispatch(showCartMenu())} className="relative">
+        <div className=" rounded-full z-40 bg-gray-800 opacity-80 p-2 fixed right-5 md:bottom-5 bottom-10 hover:opacity-100 ">
+          <div
+            onClick={() => dispatch(showCartMenu())}
+            className="relative p-3"
+          >
             <div className="t-0 absolute left-3">
-              <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-2 text-xs text-white">
+              <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-600 p-2 text-xs text-white">
                 {numberOfCartItems}
               </p>
             </div>
-            <FaShoppingCart size="40px" color="blue" />
+            <FaShoppingCart size="50px" color="white" />
           </div>
         </div>
       </div>
