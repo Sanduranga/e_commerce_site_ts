@@ -5,7 +5,7 @@ const cartSlice = createSlice({
   initialState: {
     cartItems: [],
     numberOfItems: 0,
-    totalPrice: 0,
+    totalPrice: 0.0,
     cartMenu: false,
   },
   reducers: {
@@ -17,7 +17,7 @@ const cartSlice = createSlice({
       state.numberOfItems++;
     },
 
-    itemCountMinus: (state) => {
+    unshiftItemFromCart: (state) => {
       state.numberOfItems--;
     },
     cartPrice: (state, action) => {
@@ -32,7 +32,7 @@ const cartSlice = createSlice({
 export const {
   boughtItems,
   itemCountPlus,
-  itemCountMinus,
+  unshiftItemFromCart,
   cartPrice,
   showCartMenu,
 } = cartSlice.actions;

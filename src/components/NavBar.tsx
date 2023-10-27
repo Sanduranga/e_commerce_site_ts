@@ -21,12 +21,12 @@ export default function NavBar() {
   return (
     <div className="w-full z-40 bg-gradient-to-b from-slate-500 to-slate-900/70 py-2 m-0 lg:h-auto h-[15vh]">
       <div className="flex justify-around items-center font-bold mb-4 text-xl">
-        <div
+        {/* <div
           className="cursor-pointer"
           onClick={() => dispatch(showCartMenu())}
         >
           <BsMenuButtonFill />
-        </div>
+        </div> */}
 
         <div>
           <Link to="/e_commerce_site_ts">
@@ -34,6 +34,11 @@ export default function NavBar() {
               E_Commerce <br /> Toolkit Site
             </h1>
           </Link>
+        </div>
+
+        <div className="relative h-10 bg-green-400">
+          <input className="font-normal px-2 absolute  rounded-full w-auto" />
+          <div className="bg-gray-700 w-10 absolute right-0 h-6"></div>
         </div>
 
         <div

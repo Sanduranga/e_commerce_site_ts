@@ -13,6 +13,14 @@ import CartPopup from "./CartPopup";
 import Slider from "../Slider";
 
 const HomeItems = () => {
+  interface buyItemstype {
+    price: number;
+    id: string;
+    url: string;
+    details: string;
+    noOfItems: number;
+  }
+
   const dispatch = useDispatch();
 
   const { items, pageNo } = useSelector((state: RootState) => state.items);
@@ -36,25 +44,20 @@ const HomeItems = () => {
     dispatch(cartPrice(totalPrice));
   }, [dispatch, buyHomeItems, totalPrice]);
 
-  interface buyItemstype {
-    price: number;
-    id: string;
-    url: string;
-    details: string;
-  }
-
   const buyHomeItem = (
     price: number,
     id: string,
     url: string,
-    details: string
+    details: string,
+    noOfItems: number
   ) => {
     setTotalPrice((prevState) => prevState + price);
-    setBuyHomeItems([...buyHomeItems, { price, id, url, details }]);
+    setBuyHomeItems([...buyHomeItems, { price, id, url, details, noOfItems }]);
     dispatch(itemCountPlus());
     dispatch(showCartMenu());
   };
 
+  const noOfItems = 1;
   type itemTypes = {
     id: string;
     author: string;
@@ -65,9 +68,9 @@ const HomeItems = () => {
   };
 
   const homeItemMap = () =>
-    items.map((item: itemTypes) => (
+    items.map((item: itemTypes, index) => (
       <div
-        key={item.id}
+        key={index}
         className="flex flex-col rounded-lg bg-gradient-to-b mt-3 from-gray-300/20 to-gray-600/50 overflow-hidden font-mono p-4 shadow-lg"
       >
         <img
@@ -87,7 +90,13 @@ const HomeItems = () => {
         <div>
           <button
             onClick={() =>
-              buyHomeItem(item.width, item.id, item.download_url, item.author)
+              buyHomeItem(
+                item.width,
+                item.id,
+                item.download_url,
+                item.author,
+                noOfItems
+              )
             }
             className="text-center font-bold text-white bg-green-900 rounded-lg p-1 w-auto"
           >

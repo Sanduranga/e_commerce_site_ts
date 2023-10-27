@@ -20,7 +20,7 @@ function CartPopup() {
   const cartPopupItems = () => {
     return cartItems.map((boughtItems: itemTypes, index) => (
       <div
-        key={boughtItems.id}
+        key={index}
         className="text-white mt-2 flex justify-center md:text-xl items-center"
       >
         <img
