@@ -28,7 +28,7 @@ const Slider = () => {
   return (
     <div
       ref={sliderRef}
-      className="md:w-[70vw] md:h-[70vh] sm:w-full h-auto lg:w-full lg:h-auto mx-auto overflow-hidden flex flex-nowrap text-center my-8"
+      className="md:w-[70vw] h-[50vh] sm:w-full lg:w-full mx-auto overflow-hidden flex flex-nowrap text-center mt-8"
     >
       <div className="text-white space-y-4 flex-none w-full flex flex-col items-center justify-center">
         <img

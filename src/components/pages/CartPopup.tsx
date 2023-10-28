@@ -35,7 +35,7 @@ function CartPopup() {
 
   return (
     <motion.div
-      className="fixed h-[55vh] w-[70vw] rounded-md shadow-xl shadow-black left-1/2 -translate-x-1/2 bg-slate-600"
+      className="fixed h-[55vh] w-[70vw] rounded-md shadow-xl shadow-black left-1/2 -translate-x-1/2 bg-slate-400/90"
       initial={{
         top: "100%",
       }}
@@ -55,17 +55,20 @@ function CartPopup() {
         {/* <div className="top-0 mt-5 font-bold sm:left-1/2 sm:-translate-x-1/2 font-mono md:absolute sm:text-2xl text-lg">
           your cart
         </div> */}
-        <div className="font-mono grid grid-cols-1 md:absolute sm:w-auto w-[40vw] left-5 md:top-1/2 md:-translate-y-1/2 text-sm sm:text-md text-white">
-          <button className="sm:p-2 p-1 sm:mt-2 m-1 rounded-md shadow-md bg-green-700">
-            <Link to="/cart">View Cart</Link>
-          </button>
+        <div className="font-mono grid grid-cols-1 md:absolute sm:w-auto w-[40vw] left-5 md:top-1/2 md:-translate-y-1/2 text-sm sm:text-md text-black font-bold">
+          <Link
+            className="sm:p-2 p-1 sm:mt-2 m-1 rounded-md shadow-md bg-yellow-400 hover:-translate-y-1 text-center "
+            to="/cart"
+          >
+            <button className="">View Cart</button>
+          </Link>
           <button
             onClick={() => dispatch(showCartMenu())}
-            className="sm:p-2 p-1 sm:mt-2 m-1 rounded-md shadow-md bg-green-700"
+            className="sm:p-2 p-1 sm:mt-2 m-1 rounded-md shadow-md bg-yellow-400 hover:-translate-y-1"
           >
             Continue Shopping
           </button>
-          <button className="sm:p-2 p-1 sm:mt-2 m-1 rounded-md shadow-md bg-green-700">
+          <button className="sm:p-2 p-1 sm:mt-2 m-1 rounded-md shadow-md bg-yellow-400 hover:-translate-y-1">
             Checkout
           </button>
         </div>

@@ -28,7 +28,7 @@ const HomeItems = () => {
   const totalCartPrice = useSelector(
     (state: RootState) => state.cart.totalPrice
   );
-  // const showCart = useSelector((state: RootState) => state.cart.cartMenu);
+  const showCart = useSelector((state: RootState) => state.cart.cartMenu);
 
   const [buyHomeItems, setBuyHomeItems] = useState<buyItemstype[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
@@ -98,7 +98,7 @@ const HomeItems = () => {
                 noOfItems
               )
             }
-            className="text-center font-bold text-white bg-green-900 rounded-lg p-1 w-auto"
+            className="text-center font-bold text-black px-2 bg-yellow-400 rounded-lg py-1 w-auto shadow-md shadow-black"
           >
             Buy Item
           </button>
@@ -107,12 +107,24 @@ const HomeItems = () => {
     ));
 
   return (
-    <div className="flex justify-center flex-col items-center md:grid-cols-1 relative sm:gap-20 gap-7">
+    <div className="flex relative justify-center flex-col items-center md:grid-cols-1  sm:gap-20 gap-7">
       <Slider />
-      <div className="grid gap-1 grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 px-3 md:px-5 ">
-        {homeItemMap()}
+      <div className="">
+        <div
+          className={`grid gap-1 grid-cols-2 ${
+            showCart ? "blur-sm" : "blur-0"
+          } sm:grid-cols-4 lg:grid-cols-5 px-3 md:px-5 `}
+        >
+          {homeItemMap()}
+        </div>
         <Pagenation />
       </div>
+      <div
+        className={`bg-gray-800/70 h-full w-full absolute top-0 left-0 ${
+          showCart ? "block" : "hidden"
+        }`}
+      ></div>
+
       <div>
         <CartPopup />
       </div>

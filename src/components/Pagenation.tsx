@@ -21,7 +21,7 @@ export default function Pagenation() {
   };
 
   return (
-    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center justify-center">
+    <div className=" mt-5 flex items-center justify-center">
       <button
         ref={testRef}
         onClick={handlePrev}

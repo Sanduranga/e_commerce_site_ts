@@ -11,7 +11,7 @@ function App() {
   return (
     <div
       className={`flex font-mono overflow-x-hidden ${
-        darkMode ? "bg-slate-700 text-white" : "bg-gray-300"
+        darkMode ? "bg-black/80 text-white" : "bg-gray-300"
       }`}
     >
       <Routes>

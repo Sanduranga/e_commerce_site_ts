@@ -1,17 +1,18 @@
 import { FaShoppingCart } from "react-icons/fa";
-import { BsMenuButtonFill } from "react-icons/bs";
 import { RootState } from "../redux/store";
 import { toggleMode } from "../redux/features/theme/Theme.";
 import { Link } from "react-router-dom";
 import { showCartMenu } from "../redux/features/CartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { ImSearch } from "react-icons/im";
+import { PiSignIn } from "react-icons/pi";
+import logo from "./images/logo.png";
 
 export default function NavBar() {
   const darkMode = useSelector((state: RootState) => state.theme.dark);
   const numberOfCartItems = useSelector(
     (state: RootState) => state.cart.numberOfItems
   );
-
   const dispatch = useDispatch();
 
   const handleDarkMode = () => {
@@ -20,25 +21,32 @@ export default function NavBar() {
 
   return (
     <div className="w-full z-40 bg-gradient-to-b from-slate-500 to-slate-900/70 py-2 m-0 lg:h-auto h-[15vh]">
-      <div className="flex justify-around items-center font-bold mb-4 text-xl">
-        {/* <div
-          className="cursor-pointer"
-          onClick={() => dispatch(showCartMenu())}
-        >
-          <BsMenuButtonFill />
-        </div> */}
-
+      <div className="flex justify-around items-center font-bold mb-4 lg:text-xl md:text-lg text-sm">
         <div>
           <Link to="/e_commerce_site_ts">
-            <h1 className="text-slate-300 bg-red-400 p-2 rounded-md">
-              E_Commerce <br /> Toolkit Site
-            </h1>
+            <div className="flex">
+              <img
+                src={logo}
+                alt="logo"
+                className="md:w-16 md:h-16 w-12 h-12"
+              />
+              <h1 className="text-slate-200 p-2 rounded-md">
+                E_Commerce <br /> Toolkit Site
+              </h1>
+            </div>
           </Link>
         </div>
 
-        <div className="relative h-10 bg-green-400">
-          <input className="font-normal px-2 absolute  rounded-full w-auto" />
-          <div className="bg-gray-700 w-10 absolute right-0 h-6"></div>
+        <div className="flex ">
+          <input
+            placeholder="What are u looking for?"
+            className="font-normal shadow-md shadow-black h-6 p-4 rounded-l-full w-auto"
+          />
+          <div className="flex justify-center shadow-md shadow-black py-4 items-center  bg-white w-10 rounded-r-full h-6">
+            <h1 className="hover:rotate-45">
+              <ImSearch />
+            </h1>
+          </div>
         </div>
 
         <div
@@ -59,18 +67,31 @@ export default function NavBar() {
             </span>
           </span>
         </div>
+        <div className="flex items-center justify-between md:text-sm text-xs cursor-pointer">
+          <h1 className="text-white mr-5">About</h1>
+          <h1 className="text-white cursor-pointer">
+            <PiSignIn />
+            <h1>Sign in</h1>
+          </h1>
+        </div>
 
-        <div className=" rounded-full z-40 bg-gray-800 opacity-80 p-2 fixed right-5 md:bottom-5 bottom-10 hover:opacity-100 ">
-          <div
-            onClick={() => dispatch(showCartMenu())}
-            className="relative p-3"
-          >
-            <div className="t-0 absolute left-3">
-              <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-600 p-2 text-xs text-white">
+        <div
+          onClick={() => dispatch(showCartMenu())}
+          className=" rounded-full z-40 bg-gray-800 opacity-80 md:p-4 p-2 fixed right-5 md:top-28 bottom-12 md:bottom-auto hover:opacity-100 "
+        >
+          <div className="relative p-1">
+            <div className="absolute right-1">
+              <p className="flex h-3 w-3 items-center justify-center rounded-full bg-red-600 p-2 text-xs text-white">
                 {numberOfCartItems}
               </p>
             </div>
-            <FaShoppingCart size="50px" color="white" />
+            <h1
+              className={`${
+                darkMode ? "text-white" : "text-yellow-400"
+              } text-4xl`}
+            >
+              <FaShoppingCart />
+            </h1>
           </div>
         </div>
       </div>
