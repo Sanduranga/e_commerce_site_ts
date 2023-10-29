@@ -1,13 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface iniState {
+  cartItems: [];
+  numberOfItems: number;
+  totalPrice: number;
+  cartMenu: boolean;
+}
+
+const initialState: iniState = {
+  cartItems: [],
+  numberOfItems: 0,
+  totalPrice: 0.0,
+  cartMenu: false,
+};
+
 const cartSlice = createSlice({
   name: "cart",
-  initialState: {
-    cartItems: [],
-    numberOfItems: 0,
-    totalPrice: 0.0,
-    cartMenu: false,
-  },
+  initialState,
   reducers: {
     boughtItems: (state, action) => {
       state.cartItems = action.payload;

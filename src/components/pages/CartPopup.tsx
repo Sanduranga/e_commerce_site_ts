@@ -55,8 +55,9 @@ function CartPopup() {
         {/* <div className="top-0 mt-5 font-bold sm:left-1/2 sm:-translate-x-1/2 font-mono md:absolute sm:text-2xl text-lg">
           your cart
         </div> */}
-        <div className="font-mono grid grid-cols-1 md:absolute sm:w-auto w-[40vw] left-5 md:top-1/2 md:-translate-y-1/2 text-sm sm:text-md text-black font-bold">
+        <div className="font-mono grid grid-cols-1 md:absolute sm:w-auto w-[50vw] left-5 md:top-1/2 md:-translate-y-1/2 text-sm sm:text-md text-black font-bold">
           <Link
+            onClick={() => dispatch(showCartMenu())}
             className="sm:p-2 p-1 sm:mt-2 m-1 rounded-md shadow-md bg-yellow-400 hover:-translate-y-1 text-center "
             to="/cart"
           >

@@ -15,6 +15,7 @@ const Cart = () => {
     (state: RootState) => state.cart.totalPrice
   );
   const darkMode = useSelector((state: RootState) => state.theme.dark);
+  const clickedMenu = useSelector((state: RootState) => state.theme.menuslide);
   const [noOfItems, setNoOfItems] = useState(1);
   const dispatch = useDispatch();
   // const [cart, setCart] = useState();
@@ -99,7 +100,7 @@ const Cart = () => {
       <div
         className={`${
           darkMode ? " bg-gray-700 " : " bg-gray-200 "
-        }w-[90vw] mx-auto rounded-lg md:p-7 p-5  mt-5 lg:flex md:justify-evenly min-h-[80vh]`}
+        }w-[90vw] mx-auto rounded-lg md:p-7 p-5  mt-5 lg:flex md:justify-evenly min-h-[80vh] mb-5`}
       >
         <div className=" lg:w-[50vw] w-full lg:p-1 p-2 h-[60vh] overflow-y-scroll lg-mb-0 mb-5">
           {cartItems()}
